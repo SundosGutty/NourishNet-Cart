@@ -1,0 +1,21 @@
+<div class="card mb-3" style="width: 10rem;">
+  <a
+  style="cursor: pointer;"
+  [routerLink]="[index]"
+  routerLinkActive="active"
+  class="list-group-item clearfix">
+
+  <img 
+  (error)="imageError()"
+   [src]="!errorLoadingImage ? recipe.imagePath : '../../../assets/images/recipe-app/no-image.png'"
+  alt="{{ recipe?.name }}"
+  class="card-img-top"
+  style="max-height: 50px;">
+  <div class="card-body">
+    <h6 class="card-title">{{ recipe?.name }}</h6>
+    <p class="list-group-item-text m-0">{{ recipe?.description |truncate }}</p>
+  </div>
+</a>
+</div>
+
+

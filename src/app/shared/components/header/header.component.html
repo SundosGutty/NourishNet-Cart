@@ -1,0 +1,23 @@
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+  <div class="container-fluid">
+    <p class="navbar-brand text-uppercase fs-5 text-start mb-0 p-2">NourishNet & Cart</p>
+    <button *ngIf="isAuthenticated" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item" *ngIf="isAuthenticated" (click)="closeNavbar()">
+          <a routerLink="/recipes-app" class="nav-link" >Recipes</a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated" (click)="closeNavbar()"  type="button">
+          <a routerLink="/shopping-app" class="nav-link">Shopping List</a>
+        </li>
+      </ul>
+      <div class="d-flex">
+        <button *ngIf="isAuthenticated" style="cursor: pointer;" class="btn btn-success" (click)="onLogout()">Logout</button>
+      </div>
+    </div>
+  </div>
+</nav>

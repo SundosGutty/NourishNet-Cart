@@ -1,0 +1,52 @@
+
+<div class="row">
+  <div class="col-xs-12 col-md-6 col-md-offset-3">
+    <app-alert (close)="onHandleError()" [message]="error" *ngIf="error"></app-alert>
+    <div *ngIf="isLoading">
+      <app-loading-spinner></app-loading-spinner>
+    </div>
+    <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
+      <div class="form-floating mb-3" [class.has-error]="authForm.controls['email']?.invalid && authForm.controls['email']?.touched">
+        <input 
+          type="email" 
+          class="form-control" 
+          id="floatingInput" 
+          placeholder="name@example.com"  
+          ngModel
+          name="email"
+          required
+          email
+        >
+        <label for="floatingInput">Email address</label>
+        <div *ngIf="authForm.controls['email']?.errors?.['email'] && !isLoginMode" class="text-danger">Invalid email format</div>
+      </div>
+      <div class="form-floating" [class.has-error]="authForm.controls['password']?.invalid && authForm.controls['password']?.touched">
+        <input 
+        [type]="showPassword ? 'password' : 'text'" 
+        class="form-control" 
+        id="floatingPassword" 
+        placeholder="Password" 
+        ngModel
+        name="password"
+        required
+        minlength="6"
+      >
+        <label for="floatingPassword">Password</label>
+        <div *ngIf="authForm.controls['password']?.errors?.['minlength'] && !isLoginMode" class="text-danger">Password should be at least 6 characters</div>
+      </div>
+      <div class="mt-4">
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!authForm.valid"
+        >
+          {{ isLoginMode ? 'Login' : 'Sign Up' }}
+        </button>
+        |
+        <button class="btn btn-primary" (click)="onSwitchMode()" type="button">
+          Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
